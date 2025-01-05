@@ -7,13 +7,18 @@ public class ChatClient {
     private static final int PORT = 12345;
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter your name: ");
+        String clientName = scanner.nextLine(); // Client name entered by the user
+        
         try (Socket socket = new Socket(SERVER_ADDRESS, PORT)) {
             System.out.println("Connected to the chat server...");
 
+            // Start a thread to receive messages
             new Thread(new ReceiveMessages(socket)).start();
 
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            Scanner scanner = new Scanner(System.in);
 
             System.out.println("Enter messages to send (type 'exit' to quit):");
             String message;
@@ -22,7 +27,8 @@ public class ChatClient {
                 if (message.equalsIgnoreCase("exit")) {
                     break;
                 }
-                out.println(message);
+                // Prefix the client's name to the message
+                out.println(clientName + ": " + message);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -41,7 +47,7 @@ public class ChatClient {
             try (BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
                 String message;
                 while ((message = in.readLine()) != null) {
-                    System.out.println("Server: " + message);
+                    System.out.println(message); // Print the received message
                 }
             } catch (IOException e) {
                 System.out.println("Disconnected from server.");
