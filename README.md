@@ -1,2 +1,2 @@
 # lanChat
-A sofftware that help to talk ans send files over Lan 
+A sofftware that help to talk and send files over Lan 
