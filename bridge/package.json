@@ -1,0 +1,26 @@
+{
+  "name": "lanchat",
+  "version": "1.0.0",
+  "description": "A sofftware that help to talk and send files over Lan",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/poseidon139/lanChat.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/poseidon139/lanChat/issues"
+  },
+  "homepage": "https://github.com/poseidon139/lanChat#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "multer": "^2.1.0",
+    "socket.io": "^4.8.3"
+  }
+}

@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  java-server:
+    build:
+      context: ./backend
+      dockerfile: ../docker/java/Dockerfile
+    # We map port 12345 to host for raw Java clients (ChatClient.java)
+    ports:
+      - "12345:12345"
+
+  node-bridge:
+    build:
+      context: ./bridge
+      dockerfile: ../docker/node/Dockerfile
+    # Use host network so Node can accurately read physical LAN IPs
+    network_mode: "host"
+    environment:
+      # Since we are on host network, java-server is reachable at localhost
+      - JAVA_HOST=127.0.0.1
+    depends_on:
+      - java-server
