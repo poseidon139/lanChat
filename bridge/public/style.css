@@ -268,11 +268,11 @@ body {
     }
 }
 
-/* --- INPUT AREA --- */
 .input-area {
     padding: 20px 24px;
     background-color: var(--bg-main);
     border-top: 1px solid var(--border-color);
+    position: relative;
 }
 
 form {
@@ -340,6 +340,40 @@ button:disabled {
 #attachBtn:hover:not(:disabled) {
     color: var(--text-main);
     background-color: var(--bg-tertiary);
+}
+
+#emojiBtn {
+    background-color: transparent;
+    color: var(--text-muted);
+}
+
+#emojiBtn:hover:not(:disabled) {
+    color: var(--text-main);
+    background-color: var(--bg-tertiary);
+}
+
+.emoji-picker-container {
+    position: absolute;
+    bottom: 80px;
+    left: 24px;
+    z-index: 50;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    animation: fadeIn 0.2s ease;
+}
+
+.emoji-picker-container.hidden {
+    display: none;
+}
+
+emoji-picker {
+    --background: var(--bg-secondary);
+    --border-color: var(--border-color);
+    --button-hover-background: var(--bg-tertiary);
+    --indicator-color: var(--primary);
+    --input-border-color: var(--border-color);
+    --outline-color: var(--primary);
+    --text-color: var(--text-main);
 }
 
 /* File Sharing Message Styles */

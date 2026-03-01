@@ -53,10 +53,12 @@
                 <form id="chatForm">
                     <button type="button" id="attachBtn" disabled title="Send a file"><i
                             class="fa-solid fa-paperclip"></i></button>
+                    <button type="button" id="emojiBtn" disabled title="Insert an emoji"><i class="fa-regular fa-face-smile"></i></button>
                     <input type="file" id="fileInput" class="hidden-input" style="display: none;">
                     <input type="text" id="messageInput" autocomplete="off" placeholder="Type a message..." disabled>
                     <button type="submit" id="sendBtn" disabled><i class="fa-solid fa-paper-plane"></i></button>
                 </form>
+                <div id="emojiPickerContainer" class="emoji-picker-container hidden"></div>
             </div>
         </div>
     </div>
@@ -89,6 +91,7 @@
         </div>
     </div>
 
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="client.js"></script>
 </body>

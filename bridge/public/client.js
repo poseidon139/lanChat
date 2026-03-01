@@ -10,6 +10,8 @@ const messageInput = document.getElementById('messageInput');
 const messagesContainer = document.getElementById('messagesContainer');
 const sendBtn = document.getElementById('sendBtn');
 const attachBtn = document.getElementById('attachBtn');
+const emojiBtn = document.getElementById('emojiBtn');
+const emojiPickerContainer = document.getElementById('emojiPickerContainer');
 const fileInput = document.getElementById('fileInput');
 
 const displayUsername = document.getElementById('displayUsername');
@@ -33,6 +35,7 @@ loginForm.addEventListener('submit', (e) => {
         messageInput.disabled = false;
         sendBtn.disabled = false;
         attachBtn.disabled = false;
+        emojiBtn.disabled = false;
         messageInput.focus();
 
         // Optional: send a 'joined' message?
@@ -74,6 +77,26 @@ socket.on('chat message', (msg) => {
     } else {
         // Fallback for unformatted messages
         addMessage('Unknown', msg, false);
+    }
+});
+
+// Emoji Picker Handling
+const picker = document.createElement('emoji-picker');
+emojiPickerContainer.appendChild(picker);
+
+emojiBtn.addEventListener('click', () => {
+    emojiPickerContainer.classList.toggle('hidden');
+});
+
+picker.addEventListener('emoji-click', event => {
+    messageInput.value += event.detail.unicode;
+    messageInput.focus();
+});
+
+// Hide picker when clicking outside
+document.addEventListener('click', (e) => {
+    if (!emojiPickerContainer.contains(e.target) && !emojiBtn.contains(e.target)) {
+        emojiPickerContainer.classList.add('hidden');
     }
 });
 
